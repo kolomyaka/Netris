@@ -1,0 +1,12 @@
+.eventsContainer {
+  height: 350px;
+  background-color: var(--gray-color);
+  border-radius: 0 var(--radius-s) var(--radius-s) 0;
+  padding: 16px;
+}
+
+.eventsList {
+  padding-right: 8px;
+  overflow-y: auto;
+  width: 100%;
+}

@@ -1,0 +1,9 @@
+.eventListItem {
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+  padding: 12px 0 12px 8px;
+
+  &:hover {
+    background-color: var(--hover-color);
+  }
+}

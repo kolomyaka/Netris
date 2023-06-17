@@ -1,0 +1,8 @@
+.video {
+  height: 350px;
+
+  & video {
+    border-radius: var(--radius-s) 0 0 var(--radius-s);
+    height: 100%;
+  }
+}

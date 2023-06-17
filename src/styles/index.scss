@@ -1,0 +1,22 @@
+@import './reset';
+@import './variables';
+@import 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap';
+
+#root {
+  font: var(--font-m);
+  color: var(--white-color);
+}
+
+html {
+  background-color: var(--background-color);
+}
+
+*::-webkit-scrollbar {
+  width: 2px;
+  height: 0;
+  background-color: #000;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #fff;
+}
