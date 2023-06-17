@@ -3,6 +3,11 @@
   background-color: var(--gray-color);
   border-radius: 0 var(--radius-s) var(--radius-s) 0;
   padding: 16px;
+  max-width: 250px;
+
+  &.error {
+    justify-content: center;
+  }
 }
 
 .eventsList {

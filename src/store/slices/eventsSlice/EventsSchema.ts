@@ -12,7 +12,7 @@ export interface Event {
     zone: EventZone
 }
 
-export interface TimestampSchema {
+export interface EventsSchema {
     isLoading: boolean;
     error?: string;
     events?: Event[];

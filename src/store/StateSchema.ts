@@ -1,5 +1,7 @@
-import { TimestampSchema } from "@/store/slices/timestampSlice";
+import { EventsSchema } from "@/store/slices/eventsSlice";
+import { VideoSchema } from "@/store/slices/videoSlice";
 
 export interface StateSchema {
-    timestamp: TimestampSchema
+    events: EventsSchema;
+    video: VideoSchema
 }
