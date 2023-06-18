@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import { classNames } from "@/utils/lib";
 
 import cls from "./ActiveEvent.module.scss";
@@ -8,19 +10,22 @@ interface ActiveEventProps {
     height: number;
     left: number;
     top: number;
+    id: number;
 }
 
-export const ActiveEvent = (props: ActiveEventProps) => {
+export const ActiveEvent = memo((props: ActiveEventProps) => {
     const {
         className,
         width,
         height,
         left,
-        top
+        top,
+        id
     } = props;
 
     return (
         <div
+            data-testid={"ActiveEvent"}
             className={classNames(cls.activeEvent, {}, [className])}
             style={{
                 width,
@@ -32,6 +37,6 @@ export const ActiveEvent = (props: ActiveEventProps) => {
           
         </div>
     );
-};
+});
 
 

@@ -39,6 +39,7 @@ export const Video = ({ className }: VideoProps) => {
             />
             {activeEvents.map(activeEvent =>
                 <ActiveEvent
+                    id={activeEvent.id}
                     key={activeEvent.id}
                     width={activeEvent.zone.width}
                     height={activeEvent.zone.height}
