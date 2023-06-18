@@ -1,9 +1,7 @@
 import { useContext, useEffect } from "react";
 
 import { EventListItem } from "@/components/Events";
-import { Loader } from "@/components/ui/Loader/Loader";
-import { VStack } from "@/components/ui/Stack/VStack/VStack";
-import { Typography } from "@/components/ui/Typography/Typography";
+import { Loader , VStack , Typography } from "@/components/ui";
 import { PlayerContext } from "@/context/PlayerContext";
 import { useAppDispatch } from "@/store/hooks";
 import { eventsActions, useEventsData, useEventsError, useEventsIsLoading } from "@/store/slices/eventsSlice";
