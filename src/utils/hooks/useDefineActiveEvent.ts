@@ -1,37 +1,46 @@
-import { useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
+
 import ReactPlayer from "react-player/types/lib";
-import { useVideoIsPlaying } from "@/store/slices/videoSlice";
 
-export const useDefineActiveEvent = (videoRef: ReactPlayer, eventTimestamp: number, finishEventTimestamp: number) => {
+import { PlayerContext, PlayerContextValue } from "@/context/PlayerContext";
+
+export const useDefineActiveEvent = (videoRef: ReactPlayer | undefined, eventTimestamp: number, finishEventTimestamp: number) => {
     const [isActive, setIsActive] = useState(false);
-    const isPlaying = useVideoIsPlaying();
+    const playerContextValue = useContext(PlayerContext) as PlayerContextValue;
+    const isPlaying = playerContextValue.videoIsPlaying;
+    const interval = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
+    const defineIsActiveEvent = useCallback(() => {
+        if (!videoRef || !isPlaying) {
+            setIsActive(false);
+            return;
+        }
 
-            if (!videoRef || !isPlaying) {
-                setIsActive(false);
-                return;
-            }
+        const currentTime = videoRef.getCurrentTime();
+        if (currentTime < eventTimestamp / 1000) {
+            setIsActive(false);
+            return;
+        }
 
-            const currentTime = videoRef.getCurrentTime();
-            if (currentTime < eventTimestamp / 1000) {
-                setIsActive(false);
-                return;
-            }
+        if (currentTime > finishEventTimestamp / 1000) {
+            setIsActive(false);
+            return;
+        }
 
-            if (currentTime > finishEventTimestamp / 1000) {
-                setIsActive(false);
-                return;
-            }
-
-            setIsActive(true);
-        }, 100);
-
-        return () => {
-            clearInterval(interval);
-        };
+        setIsActive(true);
     }, [eventTimestamp, finishEventTimestamp, isPlaying, videoRef]);
 
-    return [isActive];
+    useEffect(() => {
+        if (isPlaying) {
+            interval.current = setInterval(defineIsActiveEvent, 100);
+        } else {
+            clearInterval(interval.current);
+        }
+
+        return () => {
+            clearInterval(interval.current);
+        };
+    }, [defineIsActiveEvent, eventTimestamp, finishEventTimestamp, isPlaying, videoRef]);
+
+    return isActive;
 };

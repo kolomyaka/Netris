@@ -1,7 +1,8 @@
-import { call, put, takeEvery } from "redux-saga/effects";
 import { SagaIterator } from "redux-saga";
-import { eventsActions, Event } from "@/store/slices/eventsSlice";
+import { call, put, takeEvery } from "redux-saga/effects";
+
 import { EventsApi } from "@/services/api";
+import { eventsActions, Event } from "@/store/slices/eventsSlice";
 
 function* workFetchEventsData(): SagaIterator {
     try {

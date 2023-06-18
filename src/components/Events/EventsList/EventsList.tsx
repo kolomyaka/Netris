@@ -1,13 +1,15 @@
-import cls from "./EventsList.module.scss";
-import { classNames } from "@/utils/lib";
 import { useContext, useEffect } from "react";
-import { eventsActions, useEventsData, useEventsError, useEventsIsLoading } from "@/store/slices/eventsSlice";
-import { useAppDispatch } from "@/store/hooks";
+
 import { EventListItem } from "@/components/Events";
-import { Typography } from "@/components/ui/Typography/Typography";
-import { VStack } from "@/components/ui/Stack/VStack/VStack";
 import { Loader } from "@/components/ui/Loader/Loader";
+import { VStack } from "@/components/ui/Stack/VStack/VStack";
+import { Typography } from "@/components/ui/Typography/Typography";
 import { PlayerContext } from "@/context/PlayerContext";
+import { useAppDispatch } from "@/store/hooks";
+import { eventsActions, useEventsData, useEventsError, useEventsIsLoading } from "@/store/slices/eventsSlice";
+import { classNames } from "@/utils/lib";
+
+import cls from "./EventsList.module.scss";
 
 export const EventsList = () => {
 
@@ -41,6 +43,8 @@ export const EventsList = () => {
                             timestamp={event.timestamp}
                             duration={event.duration}
                             playerRef={videoRef}
+                            zone={event.zone}
+                            id={event.id}
                         />
                     )}
                 </VStack>

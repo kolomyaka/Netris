@@ -1,13 +1,14 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
+
+import { eventsReducer } from "@/store/slices/eventsSlice";
+
+
 import rootSaga from "./sagas";
 import { StateSchema } from "./StateSchema";
-import { eventsReducer } from "@/store/slices/eventsSlice";
-import { videoReducer } from "@/store/slices/videoSlice";
 
 const rootReducer = combineReducers<StateSchema>({
     events: eventsReducer,
-    video: videoReducer
 });
 
 const sagaMiddleware = createSagaMiddleware();

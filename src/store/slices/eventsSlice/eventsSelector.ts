@@ -11,3 +11,7 @@ export const [useEventsIsLoading] = buildSelector(
 export const [useEventsError] = buildSelector(
     (state) => state.events.error
 );
+
+export const [useActiveEvents] = buildSelector(
+    (state) => state.events.activeEvents
+);

@@ -12,8 +12,14 @@ export interface Event {
     zone: EventZone
 }
 
+export interface ActiveEvent {
+    zone: EventZone
+    id: number
+}
+
 export interface EventsSchema {
     isLoading: boolean;
     error?: string;
     events?: Event[];
+    activeEvents: ActiveEvent[]
 }

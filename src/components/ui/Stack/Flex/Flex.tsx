@@ -1,7 +1,8 @@
 import { memo, ReactNode } from "react";
 
-import cls from "./Flex.module.scss";
 import { classNames, Mods } from "@/utils/lib";
+
+import cls from "./Flex.module.scss";
 
 type FlexAlign = "center" | "start" | "end" | "inherit" | "stretch";
 

@@ -1,17 +1,22 @@
-import { classNames } from "@/utils/lib";
-import cls from "./EventListItem.module.scss";
+import { memo, useCallback, useEffect } from "react";
+
 import { Typography } from "@/components/ui";
-import { memo, MutableRefObject, useCallback } from "react";
+import { PlayerContextValue } from "@/context/PlayerContext";
+import { useAppDispatch } from "@/store/hooks";
+import { eventsActions, EventZone } from "@/store/slices/eventsSlice";
 import { convertTimestamp } from "@/utils/helpers";
 import { useDefineActiveEvent } from "@/utils/hooks";
+import { classNames } from "@/utils/lib";
 
-import ReactPlayer from "react-player";
+import cls from "./EventListItem.module.scss";
 
 interface EventListItemProps {
-    className?: string
-    timestamp: number
+    className?: string;
+    timestamp: number;
     duration: number;
-    playerRef: MutableRefObject<ReactPlayer>
+    playerRef: PlayerContextValue | null;
+    zone: EventZone;
+    id: number;
 }
 
 export const EventListItem = memo((props: EventListItemProps) => {
@@ -19,14 +24,25 @@ export const EventListItem = memo((props: EventListItemProps) => {
         className,
         timestamp,
         duration,
-        playerRef
+        playerRef,
+        zone,
+        id
     } = props;
 
-    const [isActive] = useDefineActiveEvent(playerRef.current, timestamp, timestamp + duration);
-    
+    const dispatch = useAppDispatch();
+    const isActive = useDefineActiveEvent(playerRef?.ref.current, timestamp, timestamp + duration);
+
     const onEventClickHandler = useCallback((timestamp: number) => () => {
-        playerRef.current.seekTo(timestamp / 1000);
+        playerRef?.ref.current.seekTo(timestamp / 1000);
     }, [playerRef]);
+
+    useEffect(() => {
+        dispatch(eventsActions.setActiveEvents({
+            isActive,
+            zone,
+            id
+        }));
+    }, [dispatch, id, isActive, timestamp, zone]);
 
     return (
         <div

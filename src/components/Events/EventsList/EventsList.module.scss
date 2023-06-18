@@ -1,9 +1,9 @@
 .eventsContainer {
-  height: 350px;
   background-color: var(--gray-color);
   border-radius: 0 var(--radius-s) var(--radius-s) 0;
   padding: 16px;
   max-width: 250px;
+  height: 720px;
 
   &.error {
     justify-content: center;

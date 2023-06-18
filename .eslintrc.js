@@ -6,7 +6,8 @@ module.exports = {
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/recommended"
     ],
     "overrides": [
     ],
@@ -19,6 +20,9 @@ module.exports = {
         "react": {
             "version": "detect"
         },
+        "import/resolver": {
+            "typescript": true,
+        }
     },
     "plugins": [
         "react",
@@ -26,6 +30,30 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
+        "import/order": [
+            "error",
+            {
+                "groups": ["builtin", "external", "internal"],
+                "pathGroups": [
+                    {
+                        "pattern": "react",
+                        "group": "external",
+                        "position": "before"
+                    }
+                ],
+                "pathGroupsExcludedImportTypes": ["react"],
+                "newlines-between": "always",
+                "alphabetize": {
+                    "order": "asc",
+                    "caseInsensitive": true
+                }
+            }
+        ],
+        "import/no-unresolved": [2, { commonjs: true, amd: true }],
+        "import/named": 2,
+        "import/namespace": 2,
+        "import/default": 2,
+        "import/export": 2,
         "react/jsx-indent": [2, 4, { indentLogicalExpressions: true }],
         indent: [2,4],
         "react/jsx-props-no-spreading": "warn",

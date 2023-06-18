@@ -1,6 +1,8 @@
-import cls from "./Typography.module.scss";
 import { memo, ReactNode } from "react";
+
 import { classNames } from "@/utils/lib";
+
+import cls from "./Typography.module.scss";
 
 export interface TypographyProps {
     children: ReactNode;

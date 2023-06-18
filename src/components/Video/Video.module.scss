@@ -1,8 +1,7 @@
 .video {
-  height: 350px;
+  position: relative;
 
   & video {
     border-radius: var(--radius-s) 0 0 var(--radius-s);
-    height: 100%;
   }
 }

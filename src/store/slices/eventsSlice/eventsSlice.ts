@@ -1,9 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Event, EventsSchema } from "./EventsSchema";
+
+import { Event, EventsSchema,ActiveEvent } from "./EventsSchema";
 
 const initialState: EventsSchema = {
     isLoading: false,
     events: undefined,
+    activeEvents: []
 };
 
 export const eventsSlice = createSlice({
@@ -20,6 +22,20 @@ export const eventsSlice = createSlice({
         eventsDataError: (state) => {
             state.isLoading = false;
             state.error = "Ошибка при получении данных";
+        },
+        setActiveEvents: (state, action) => {
+            const isActive = action.payload.isActive;
+            const zone = action.payload.zone;
+            const id = action.payload.id;
+
+            if (isActive) {
+                state.activeEvents.push({
+                    zone,
+                    id
+                });
+            } else {
+                state.activeEvents = state.activeEvents.filter((activeEvent: ActiveEvent) => activeEvent.id !== id);
+            }
         }
     },
 });
