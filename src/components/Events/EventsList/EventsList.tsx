@@ -30,7 +30,10 @@ export const EventsList = () => {
     }
 
     return (
-        <VStack gap={12} className={cls.eventsContainer}>
+        <VStack
+            gap={12}
+            className={cls.eventsContainer}
+        >
             <Typography variant={"h3"}>Список событий</Typography>
             {isLoading
                 ? <Loader />

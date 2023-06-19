@@ -4,7 +4,7 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import { EventsApi } from "@/services/api";
 import { eventsActions, Event } from "@/store/slices/eventsSlice";
 
-function* workFetchEventsData(): SagaIterator {
+export function* workFetchEventsData(): SagaIterator {
     try {
         const data: Event[] = yield call(EventsApi.fetchData);
 
@@ -14,7 +14,8 @@ function* workFetchEventsData(): SagaIterator {
             ]));
         }
     } catch (err) {
-        yield put(eventsActions.eventsDataError());
+        const errorMessage = "Ошибка при получении данных";
+        yield put(eventsActions.eventsDataError(errorMessage));
     }
 }
 

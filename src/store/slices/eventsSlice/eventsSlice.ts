@@ -19,9 +19,9 @@ export const eventsSlice = createSlice({
             state.isLoading = false;
             state.events = action.payload;
         },
-        eventsDataError: (state) => {
+        eventsDataError: (state, action: PayloadAction<string>) => {
             state.isLoading = false;
-            state.error = "Ошибка при получении данных";
+            state.error = action.payload;
         },
         setActiveEvents: (state, action) => {
             const isActive = action.payload.isActive;

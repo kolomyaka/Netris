@@ -20,7 +20,6 @@ export const ActiveEvent = memo((props: ActiveEventProps) => {
         height,
         left,
         top,
-        id
     } = props;
 
     return (
