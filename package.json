@@ -5,8 +5,6 @@
   "main": "index.js",
   "homepage": "https://kolomyaka1.github.io/Netris",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "webpack serve",
     "build": "webpack --env mode=production",
     "lint:ts": "eslint '**/*.{ts,tsx}'",
